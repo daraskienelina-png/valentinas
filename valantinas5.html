@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Valentino klausimas 💖</title>
+<style>
+body {
+    margin:0;
+    height:100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: Arial, sans-serif;
+}
+
+.window {
+    background:white;
+    width:420px;
+    padding:20px;
+    border-radius:22px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    text-align:center;
+    position: relative;
+}
+
+.inner-frame {
+    border: 2px solid #ff5e78;
+    border-radius: 18px;
+    padding: 20px;
+    position: relative;
+}
+
+h1 { color:#ff5e78; }
+
+button {
+    margin: 10px;
+    padding: 14px 26px;
+    border: none;
+    border-radius: 30px;
+    font-size:17px;
+    cursor:pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+.yes { background:#ff5e78; color:white; }
+.no { background:#ffd1dc; }
+
+button:hover { transform: scale(1.08); }
+
+.cover {
+    width: 100%;
+    height: 210px;
+    background-image: url("us.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    margin-bottom: 15px;
+}
+
+.blink {
+    animation: blink 3s ease-in-out infinite;
+    font-size: 22px;
+    color: #ff5e78;
+    font-weight: bold;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ff5e78;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+.hidden { display:none; }
+</style>
+</head>
+
+<body>
+
+<div class="window">
+
+    <!-- KLAUSIMAS -->
+    <div id="question" class="inner-frame">
+        <h1>💌 Ar būsi mano Valentinas?</h1>
+        <button class="yes" onclick="showYes()">TAIP 💖</button>
+        <button id="noBtn" class="no">NE 🙈</button>
+    </div>
+
+    <!-- TAIP ATSAKYMAS -->
+    <div id="yes" class="inner-frame hidden">
+        <div class="cover"></div>
+        <div class="blink">💖 Aš labai laimingas! 💖</div>
+        <a href="https://www.youtube.com/watch?v=0npouzhhZTo" target="_blank">▶️ Paspausk – mūsų daina</a>
+    </div>
+
+</div>
+
+<script>
+// NE mygtuko "triksterio" efektas
+const noBtn = document.getElementById("noBtn");
+const question = document.getElementById("question");
+
+noBtn.addEventListener("mouseenter", () => {
+    const parentWidth = question.clientWidth - noBtn.offsetWidth;
+    const parentHeight = question.clientHeight - noBtn.offsetHeight;
+
+    // Atsitiktinė pozicija mygtukui
+    const x = Math.random() * parentWidth;
+    const y = Math.random() * parentHeight;
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// TAIP mygtukas
+function showYes() {
+    question.classList.add("hidden");
+    document.getElementById("yes").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
